@@ -1,0 +1,14 @@
+{
+  "plugin": "org.smartide.plugin.kivy",
+  "run": "buildozer android debug deploy",
+  "intelligence": {
+    ".json": {
+      "enabled": true,
+      "run": "vscode-json-language-server --stdio"
+    },
+    ".py": {
+      "enabled": true,
+      "run": "pylsp"
+    }
+  }
+}

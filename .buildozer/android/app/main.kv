@@ -1,0 +1,125 @@
+#:kivy 2.0.0
+
+FloatLayout:
+    canvas.before:
+        Color:
+            rgba: 0.05, 0.06, 0.09, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    # 1. عرض الكاميرا في الخلفية
+    Image:
+        id: camera_preview
+        size_hint: 1, 1
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+    # 2. شريط العنوان العلوي (Glassmorphic Header)
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 0.94, 0.1
+        pos_hint: {'center_x': 0.5, 'top': 0.97}
+        padding: [15, 8]
+        
+        canvas.before:
+            Color:
+                rgba: 0.1, 0.12, 0.18, 0.85
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [16]
+
+        Label:
+            text: "[b]AI SPEED RADAR & TRACKER[/b]"
+            markup: True
+            font_size: '18sp'
+            color: 1, 1, 1, 1
+            halign: 'center'
+            valign: 'middle'
+
+        Label:
+            id: status_label
+            text: "الحالة: جاري تهيئة الكاميرا والذكاء الاصطناعي..."
+            markup: True
+            font_size: '12sp'
+            color: 0.7, 0.9, 1, 1
+            halign: 'center'
+            valign: 'middle'
+
+    # 3. لوحة عرض السرعات (Cars & Airplanes Panel)
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: 0.94, 0.15
+        pos_hint: {'center_x': 0.5, 'y': 0.12}
+        spacing: 12
+
+        # بطاقة سرعة السيارات
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 10
+            canvas.before:
+                Color:
+                    rgba: 0.08, 0.2, 0.15, 0.85
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [14]
+
+            Label:
+                text: "🚗 سرعة السيارات"
+                font_size: '14sp'
+                color: 0.7, 1, 0.8, 1
+                bold: True
+
+            Label:
+                id: car_speed_label
+                text: "0 [color=00FF88]KM/H[/color]"
+                markup: True
+                font_size: '24sp'
+                bold: True
+                color: 1, 1, 1, 1
+
+        # بطاقة سرعة الطائرات
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 10
+            canvas.before:
+                Color:
+                    rgba: 0.08, 0.15, 0.25, 0.85
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [14]
+
+            Label:
+                text: "✈️ سرعة الطائرات"
+                font_size: '14sp'
+                color: 0.7, 0.9, 1, 1
+                bold: True
+
+            Label:
+                id: plane_speed_label
+                text: "0 [color=00A2FF]KM/H[/color]"
+                markup: True
+                font_size: '24sp'
+                bold: True
+                color: 1, 1, 1, 1
+
+    # 4. زر ضبط المسافة والمعايرة السفلي
+    Button:
+        text: "ضَبْط رادار المسافات (المنطقة 15م)"
+        size_hint: 0.94, 0.07
+        pos_hint: {'center_x': 0.5, 'y': 0.03}
+        background_normal: ''
+        background_color: 0, 0.8, 1, 0.9
+        color: 0, 0, 0, 1
+        bold: True
+        font_size: '15sp'
+        on_release: app.on_calibrate_click()
+        canvas.before:
+            Color:
+                rgba: 0, 0.9, 1, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [12]
